@@ -199,8 +199,10 @@ class Item extends PayPalModel
      */
     public function setUrl($url)
     {
-        UrlValidator::validate($url, "Url");
-        $this->url = $url;
+        if ($url) {
+            UrlValidator::validate($url, "Url");
+            $this->url = $url;
+        }
         return $this;
     }
 
