@@ -1,9 +1,10 @@
 {
     "name": "b3-it/paypal-php-sdk",
-    "version": "1.1",
+    "version": "1.0.0.0",
     "description": "PayPal's PHP SDK for REST APIs",
     "keywords": ["paypal", "payments", "rest", "sdk"],
     "type": "library",
+    "minimum-stability": "dev",
     "license": "Apache-2.0",
     "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
     "authors": [
