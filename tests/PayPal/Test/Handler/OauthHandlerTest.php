@@ -31,7 +31,7 @@ class OauthHandlerTest extends TestCase
      */
     public $config;
 
-    public function setUp()
+    public function setup(): void
     {
         $this->apiContext = new ApiContext(
             new OAuthTokenCredential(

@@ -29,7 +29,7 @@ class InvoiceFunctionalTest extends TestCase
 
     public $apiContext;
 
-    public function setUp()
+    public function setup(): void
     {
         $className = $this->getClassName();
         $testName = $this->getName();
