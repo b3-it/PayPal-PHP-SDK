@@ -687,5 +687,27 @@ class Payment extends PayPalResourceModel
         $ret->fromJson($json);
         return $ret;
     }
+    
+    
+	public static function transactionReporting($params, $apiContext = null, $restCall = null)
+	{
+		ArgumentValidator::validate($params, 'params');
+		$payLoad = "";
+		$allowedParams = array(
+			'start_date' => 1,
+			'end_date' => 1,
+			'fields' => 1,
+		);
+		$json = self::executeCall(
+			"/v1/reporting/transactions?" . http_build_query(array_intersect_key($params, $allowedParams)),
+			"GET",
+			$payLoad,
+			null,
+			$apiContext,
+			$restCall
+		);
+
+		return json_decode($json, true);
+	}
 
 }
