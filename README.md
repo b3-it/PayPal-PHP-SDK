@@ -50,7 +50,7 @@ We're releasing a [brand new version of our SDK!](https://github.com/paypal/PayP
 
 ## Prerequisites
 
-   - PHP 5.3 or above
+   - PHP 7.4 or above
    - [curl](https://secure.php.net/manual/en/book.curl.php), [json](https://secure.php.net/manual/en/book.json.php) & [openssl](https://secure.php.net/manual/en/book.openssl.php) extensions must be enabled
 
 
