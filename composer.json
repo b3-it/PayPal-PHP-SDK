@@ -15,7 +15,7 @@
   "authors": [
     {
       "name": "PayPal",
-      "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+      "homepage": "https://github.com/b3-it/PayPal-PHP-SDK/contributors"
     }
   ],
   "require": {
