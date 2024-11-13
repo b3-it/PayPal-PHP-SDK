@@ -2,6 +2,7 @@
 
 namespace PayPal\Common;
 
+use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Validation\JsonValidator;
 
 /**
@@ -12,22 +13,23 @@ use PayPal\Validation\JsonValidator;
 class PayPalModel
 {
 
-    private $_propMap = [];
+    private array $_propMap = [];
 
     /**
      * OAuth Credentials to use for this call
      *
      * @var \PayPal\Auth\OAuthTokenCredential $credential
      */
-    protected static $credential;
+    protected static OAuthTokenCredential $credential;
 
     /**
      * Sets Credential
      *
-     * @deprecated Pass ApiContext to create/get methods instead
      * @param \PayPal\Auth\OAuthTokenCredential $credential
+     *
+     *@deprecated Pass ApiContext to create/get methods instead
      */
-    public static function setCredential($credential)
+    public static function setCredential(OAuthTokenCredential $credential)
     {
         self::$credential = $credential;
     }
@@ -175,7 +177,7 @@ class PayPalModel
         foreach ($param as $k => $v) {
             if ($v instanceof PayPalModel) {
                 $ret[$k] = $v->toArray();
-            } elseif (is_array($v) && sizeof($v) <= 0) {
+            } elseif (is_array($v) && count($v) <= 0) {
                 $ret[$k] = [];
             } elseif (is_array($v)) {
                 $ret[$k] = $this->_convertToArray($v);
@@ -186,7 +188,7 @@ class PayPalModel
         // If the array is empty, which means an empty object,
         // we need to convert array to StdClass object to properly
         // represent JSON String
-        if (sizeof($ret) <= 0) {
+        if (count($ret) <= 0) {
             $ret = new PayPalModel();
         }
         return $ret;
@@ -196,7 +198,9 @@ class PayPalModel
      * Fills object value from Array list
      *
      * @param $arr
+     *
      * @return $this
+     * @throws \PayPal\Exception\PayPalConfigurationException
      */
     public function fromArray($arr)
     {
@@ -207,7 +211,7 @@ class PayPalModel
                 if (is_array($v)) {
                     // Determine the class of the object
                     if (($clazz = ReflectionUtil::getPropertyClass(get_class($this), $k)) != null) {
-                        // If the value is an associative array, it means, its an object. Just make recursive call to it.
+                        // If the value is an associative array, it means, it's an object. Just make recursive call to it.
                         if (empty($v)) {
                             if (ReflectionUtil::isPropertyClassArray(get_class($this), $k)) {
                                 // It means, it is an array of objects.
@@ -263,11 +267,13 @@ class PayPalModel
      * Fills object value from Json string
      *
      * @param $json
+     *
      * @return $this
+     * @throws \JsonException
      */
     public function fromJson($json)
     {
-        return $this->fromArray(json_decode($json, true));
+        return $this->fromArray(json_decode($json, true, 512, JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -284,23 +290,20 @@ class PayPalModel
      * Returns object JSON representation
      *
      * @param int $options http://php.net/manual/en/json.constants.php
+     *
      * @return string
+     * @throws \JsonException
      */
     public function toJSON($options = 0)
     {
-        // Because of PHP Version 5.3, we cannot use JSON_UNESCAPED_SLASHES option
-        // Instead we would use the str_replace command for now.
-        // TODO: Replace this code with return json_encode($this->toArray(), $options | 64); once we support PHP >= 5.4
-        if (version_compare(phpversion(), '5.4.0', '>=') === true) {
-            return json_encode($this->toArray(), $options | 64);
-        }
-        return str_replace('\\/', '/', json_encode($this->toArray(), $options));
+        return json_encode($this->toArray(), JSON_THROW_ON_ERROR | $options | 64);
     }
 
     /**
      * Magic Method for toString
      *
      * @return string
+     * @throws \JsonException
      */
     public function __toString()
     {
