@@ -528,7 +528,7 @@ class CreditCard extends PayPalResourceModel
     public static function all($params, $apiContext = null, $restCall = null)
     {
         if (is_null($params)) {
-            $params = array();
+            $params = [];
         }
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

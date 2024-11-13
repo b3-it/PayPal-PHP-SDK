@@ -512,7 +512,7 @@ class OpenIdUserinfo extends PayPalResourceModel
     {
         static $allowedParams = array('schema' => 1);
 
-        $params = is_array($params)  ? $params : array();
+        $params = is_array($params)  ? $params : [];
 
         if (!array_key_exists('schema', $params)) {
             $params['schema'] = 'openid';

@@ -94,7 +94,7 @@ class PayPalResourceModel extends PayPalModel implements IResource
      * @param array $handlers
      * @return string json response of the object
      */
-    protected static function executeCall($url, $method, $payLoad, $headers = array(), $apiContext = null, $restCall = null, $handlers = array('PayPal\Handler\RestHandler'))
+    protected static function executeCall($url, $method, $payLoad, $headers = [], $apiContext = null, $restCall = null, $handlers = array('PayPal\Handler\RestHandler'))
     {
         //Initialize the context and rest call object if not provided explicitly
         $apiContext = $apiContext ? $apiContext : new ApiContext(self::$credential);

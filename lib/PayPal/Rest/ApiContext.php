@@ -61,7 +61,7 @@ class ApiContext
     public function getRequestHeaders()
     {
         $result = PayPalConfigManager::getInstance()->get('http.headers');
-        $headers = array();
+        $headers = [];
         foreach ($result as $header => $value) {
             $headerName = ltrim($header, 'http.headers');
             $headers[$headerName] = $value;

@@ -77,7 +77,7 @@ class PatchRequest extends PayPalModel
      */
     public function toJSON($options = 0)
     {
-        $json = array();
+        $json = [];
         foreach ($this->getPatches() as $patch) {
             $json[] = $patch->toArray();
         }

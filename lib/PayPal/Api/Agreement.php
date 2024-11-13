@@ -620,7 +620,7 @@ class Agreement extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return AgreementTransactions
      */
-    public static function searchTransactions($agreementId, $params = array(), $apiContext = null, $restCall = null)
+    public static function searchTransactions($agreementId, $params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($agreementId, 'agreementId');
         ArgumentValidator::validate($params, 'params');

@@ -104,9 +104,9 @@ class Payout extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return PayoutBatch
      */
-    public function create($params = array(), $apiContext = null, $restCall = null)
+    public function create($params = [], $apiContext = null, $restCall = null)
     {
-        $params = $params ? $params : array();
+        $params = $params ? $params : [];
         ArgumentValidator::validate($params, 'params');
         $payLoad = $this->toJSON();
         $allowedParams = array(

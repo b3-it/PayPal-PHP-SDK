@@ -179,7 +179,7 @@ class Webhook extends PayPalResourceModel
      */
     public static function getAll($apiContext = null, $restCall = null)
     {
-        return self::getAllWithParams(array(), $apiContext, $restCall);
+        return self::getAllWithParams([], $apiContext, $restCall);
     }
 
     /**
@@ -190,7 +190,7 @@ class Webhook extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return WebhookList
      */
-    public static function getAllWithParams($params = array(), $apiContext = null, $restCall = null)
+    public static function getAllWithParams($params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

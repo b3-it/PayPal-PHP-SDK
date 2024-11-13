@@ -270,7 +270,7 @@ class Templates extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Templates
      */
-    public static function getAll($params = array(), $apiContext = null, $restCall = null)
+    public static function getAll($params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
         $payLoad = "";

@@ -23,7 +23,7 @@ class FuturePayment extends Payment
      */
     public function create($apiContext = null, $clientMetadataId = null, $restCall = null)
     {
-        $headers = array();
+        $headers = [];
         if ($clientMetadataId != null) {
             $headers = array(
                 'PAYPAL-CLIENT-METADATA-ID' => $clientMetadataId

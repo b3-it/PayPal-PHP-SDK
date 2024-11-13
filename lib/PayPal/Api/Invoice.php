@@ -1165,7 +1165,7 @@ class Invoice extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return InvoiceSearchResponse
      */
-    public static function getAll($params = array(), $apiContext = null, $restCall = null)
+    public static function getAll($params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($params, 'params');
 
@@ -1289,7 +1289,7 @@ class Invoice extends PayPalResourceModel
      * @param PayPalRestCall $restCall is the Rest Call Service that is used to make rest calls
      * @return Image
      */
-    public static function qrCode($invoiceId, $params = array(), $apiContext = null, $restCall = null)
+    public static function qrCode($invoiceId, $params = [], $apiContext = null, $restCall = null)
     {
         ArgumentValidator::validate($invoiceId, 'invoiceId');
         ArgumentValidator::validate($params, 'params');

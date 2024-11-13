@@ -179,7 +179,7 @@ class OAuthTokenCredential extends PayPalResourceModel
      * @param array $params optional arrays to override defaults
      * @return string|null
      */
-    public function getRefreshToken($config, $authorizationCode = null, $params = array())
+    public function getRefreshToken($config, $authorizationCode = null, $params = [])
     {
         static $allowedParams = array(
             'grant_type' => 'authorization_code',
@@ -188,7 +188,7 @@ class OAuthTokenCredential extends PayPalResourceModel
             'response_type' => 'token'
         );
 
-        $params = is_array($params) ? $params : array();
+        $params = is_array($params) ? $params : [];
         if ($authorizationCode) {
             //Override the authorizationCode if value is explicitly set
             $params['code'] = $authorizationCode;
